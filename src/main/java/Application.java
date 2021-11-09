@@ -20,15 +20,15 @@ public class Application {
             screen.setCursorPosition(null); // we don't need acursor
             screen.startScreen(); // screens must bestarted
             screen.doResizeIfNecessary(); // resize screenif necessary
+            screen.clear();
+            screen.setCharacter(10, 10, TextCharacter.fromCharacter('X')[0]);
+            screen.refresh();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Screen screen = null;
-        screen.clear();
-        screen.setCharacter(10, 10, TextCharacter.fromCharacter('X')[0]);
-        screen.refresh();
+
 
 
 
