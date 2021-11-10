@@ -7,14 +7,16 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import javax.swing.text.Position;
 import java.io.IOException;
 
 public class Game{
 
-    private static int y =10;
-    private static int x=10;
     private static Screen screen;
+    private static Hero hero = new Hero(10, 10);
 
+
+    // construtor de game
     public Game() {
         try {
 
@@ -37,29 +39,21 @@ public class Game{
 
     private static void draw() throws IOException {
         screen.clear();
-        screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
-        try {
-            screen.refresh();
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
+        screen.setCharacter(hero.getY(), hero.getY(), TextCharacter.fromCharacter('X')[0]);
+        screen.refresh();
+        hero.draw(screen);
     }
 
     private static void processKey(KeyStroke key) {
 
-
         if(key.getKeyType() == KeyType.ArrowUp)
-            y--; // down
+           hero.moveUp();
         else if (key.getKeyType() == KeyType.ArrowDown)
-            y++; // up
+           hero.moveDown();
         else if (key.getKeyType() == KeyType.ArrowLeft)
-            x--; // left
+           hero.moveLeft();
         else
-            x++; // right
-
-
+          hero.moveRight();
 
     }
 
@@ -73,7 +67,6 @@ public class Game{
                 processKey(key);
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
                     go = false;
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

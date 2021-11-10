@@ -14,5 +14,6 @@ public class Application {
         Game game = new Game();
         Game.run();
 
+        Hero hero = new Hero(10,10);
     }
 }
