@@ -1,5 +1,4 @@
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -7,13 +6,13 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
-import javax.swing.text.Position;
+
 import java.io.IOException;
 
 public class Game{
 
     private static Screen screen;
-    private static Hero hero = new Hero(10, 10);
+    private static Hero hero;
     private static int y,x;
 
 
@@ -27,7 +26,7 @@ public class Game{
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
 
-            Hero hero = new Hero(10, 10);
+            hero = new Hero(10, 10);
 
             screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null); // we don't need acursor
@@ -52,13 +51,13 @@ public class Game{
     private void processKey(KeyStroke key) {
 
         if(key.getKeyType() == KeyType.ArrowUp)
-            hero.moveUp();
+            moveHero(hero.moveUp());
         else if (key.getKeyType() == KeyType.ArrowDown)
-            hero.moveDown();
+            moveHero(hero.moveDown());
         else if (key.getKeyType() == KeyType.ArrowLeft)
-            hero.moveLeft();
+            moveHero(hero.moveLeft());
         else
-            hero.moveRight();
+            moveHero(hero.moveRight());
     }
 
     public void run() throws IOException {
@@ -82,6 +81,9 @@ public class Game{
     }
 
 
+    private void moveHero(Position position) {
+        hero.setPosition(position);
+    }
 
 }
 
