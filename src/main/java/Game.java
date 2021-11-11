@@ -14,6 +14,8 @@ public class Game{
 
     private static Screen screen;
     private static Hero hero = new Hero(10, 10);
+    private static int y,x;
+
 
 
     // construtor de game
@@ -24,6 +26,8 @@ public class Game{
             TerminalSize terminalSize = new TerminalSize(40, 20);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
+
+            Hero hero = new Hero(10, 10);
 
             screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null); // we don't need acursor
@@ -37,27 +41,27 @@ public class Game{
 
     }
 
-    private static void draw() throws IOException {
+    private void draw() throws IOException {
+        System.out.println("teste");
         screen.clear();
-        screen.setCharacter(hero.getY(), hero.getY(), TextCharacter.fromCharacter('X')[0]);
-        screen.refresh();
         hero.draw(screen);
+        screen.refresh();
+
     }
 
-    private static void processKey(KeyStroke key) {
+    private void processKey(KeyStroke key) {
 
         if(key.getKeyType() == KeyType.ArrowUp)
-           hero.moveUp();
+            hero.moveUp();
         else if (key.getKeyType() == KeyType.ArrowDown)
-           hero.moveDown();
+            hero.moveDown();
         else if (key.getKeyType() == KeyType.ArrowLeft)
-           hero.moveLeft();
+            hero.moveLeft();
         else
-          hero.moveRight();
-
+            hero.moveRight();
     }
 
-    public static void run() throws IOException {
+    public void run() throws IOException {
 
         boolean go = true;
         while(go) {

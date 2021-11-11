@@ -7,13 +7,10 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
     // getters
-    public int getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
-    }
+    public int getX(){  return x;}
+    public int getY(){  return y; }
 
     //setters
     public void setX(int x){
@@ -23,5 +20,11 @@ public class Position {
         this.y = y;
     }
 
+
+    /*
+    private void moveHero(Position position) {
+        hero.setPosition(position);
+    }
+    */
 
 }

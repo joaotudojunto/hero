@@ -1,50 +1,49 @@
 
 // parte 8 ficha
 
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Hero {
 
-    private Position position;
+    private int x;
+    private int y;
 
     //construtor
     public Hero(int x, int y){
-        position.x = x;
-        position.y = y;
+        this.x = x;
+        this.y = y;
     }
     // getters
     public int getX(){
-        return position.getX();
+        return x;
     }
     public int getY(){
-        return position.getY();
+        return y;
     }
-
     //setters
     public void setX(int x){
-        this.getX() = x;
+        this.x = x;
     }
-
     public void setY(int y){
         this.y = y;
     }
 
-
     // funcoes move
     void moveUp(){
-        y--;
+        this.y = this.getY() - 1;
     }
     void moveDown(){
-        y++;
+        this.y = this.getY() + 1;
     }
     public void moveLeft(){
-        x--;
+        this.x = this.getX() - 1;
     }
     public void moveRight(){
-        x++;
+        this.x = this.getX() + 1;
     }
 
     public void draw(Screen screen) {
-
+        screen.setCharacter(this.x,this.y, TextCharacter.fromCharacter('X')[0]);
     }
 }
