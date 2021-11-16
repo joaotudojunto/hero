@@ -14,6 +14,9 @@ public class Game{
     private static Screen screen;
     private static Hero hero;
     private static int y,x;
+    static Arena arena = new Arena(40,20);
+    public int height, width;
+
 
 
 
@@ -40,15 +43,16 @@ public class Game{
 
     }
 
+
     private void draw() throws IOException {
-        System.out.println("teste");
         screen.clear();
         hero.draw(screen);
         screen.refresh();
 
     }
 
-    private void processKey(KeyStroke key) {
+
+    void processKey(KeyStroke key) {
 
         if(key.getKeyType() == KeyType.ArrowUp)
             moveHero(hero.moveUp());
@@ -59,6 +63,8 @@ public class Game{
         else
             moveHero(hero.moveRight());
     }
+
+
 
     public void run() throws IOException {
 
@@ -80,10 +86,27 @@ public class Game{
 
     }
 
+    public boolean canHeroMove(Position position) {
+        if (position.getX() >= 0 && position.getX() <= width && position.getY() >= 0 && position.getY() <= height){
+            return true;
+    }
+        return false;
+    }
+
+/*
+    public static boolean canHeroMove(Position position){
+        if(position.getX() >= 0 && position.getX() <= arena.width && position.getY() >= 0 && position.getY() <= arena.height) return false;
+        return true;
+    }
+*/
 
     private void moveHero(Position position) {
+        if(canHeroMove(position));
+        //System.out.println(position.getX());
         hero.setPosition(position);
     }
+
+
 
 }
 

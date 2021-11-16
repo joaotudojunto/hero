@@ -20,10 +20,4 @@ public class Position {
         this.y = y;
     }
 
-    /*
-    private void moveHero(Position position) {
-        hero.setPosition(position);
-    }
-    */
-
 }
