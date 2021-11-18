@@ -1,4 +1,8 @@
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -9,12 +13,10 @@ public class Arena {
     Hero hero;
     public static int height, width;
 
-
-    public Arena(int height, int width) {
+    public Arena(int width, int height) {
         hero = new Hero(10, 10);
-        this.height = height;
         this.width = width;
-
+        this.height = height;
     }
 
     public void processKey(KeyStroke key) {
@@ -31,11 +33,11 @@ public class Arena {
 
     }
 
-    public void draw(Screen screen) throws IOException {
-        screen.clear();
-        hero.draw(screen);
-        screen.refresh();
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
+        hero.draw(graphics);
     }
 
     private void moveHero(Position position) {
@@ -45,13 +47,15 @@ public class Arena {
         }
     }
 
-
     public static boolean canHeroMove(Position position) {
-        if (position.getX() >= 0 && position.getX() <= width && position.getY() >= 0 && position.getY() <= height) {
+        if (position.getX() >= 0 && position.getX() < width && position.getY() >= 0 && position.getY() < height) {
+            //System.out.println("position x" + position.getX() + "position y: " + position.getY());
             return true;
         } else {
             return false;
         }
     }
+
+
 
 }
