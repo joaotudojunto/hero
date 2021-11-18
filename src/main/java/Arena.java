@@ -6,7 +6,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-
 import java.io.IOException;
 
 public class Arena {
@@ -48,8 +47,7 @@ public class Arena {
     }
 
     public static boolean canHeroMove(Position position) {
-        if (position.getX() >= 0 && position.getX() < width && position.getY() >= 0 && position.getY() < height) {
-            //System.out.println("position x" + position.getX() + "position y: " + position.getY());
+        if (position.getX() >= 0 && position.getX() < width && position.getY() >= 0 && position.getY() < height){
             return true;
         } else {
             return false;
