@@ -50,7 +50,6 @@ public class Game{
     }
 
     private void draw() throws IOException {
-        //TextGraphics graphics = screen.newTextGraphics();
         screen.clear();
         arena.draw(screen.newTextGraphics());
         screen.refresh();
