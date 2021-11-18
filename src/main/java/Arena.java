@@ -39,16 +39,18 @@ public class Arena {
     }
 
     private void moveHero(Position position) {
-        if (canHeroMove(position)) ;
-             hero.setPosition(position);
+
+        if (canHeroMove(position)) {
+            hero.setPosition(position);
+        }
     }
 
 
     public static boolean canHeroMove(Position position) {
         if (position.getX() >= 0 && position.getX() <= width && position.getY() >= 0 && position.getY() <= height) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 
