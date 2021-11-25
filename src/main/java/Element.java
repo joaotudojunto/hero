@@ -20,4 +20,17 @@ public abstract class Element {
 
     public abstract void draw(TextGraphics screen);
 
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null) return false;
+        if (getClass() != o.getClass()) return false;
+        Position p = (Position) o;
+        return position.getX() == p.getX() && position.getY() == p.getY();
+    }
+
+
+
 }

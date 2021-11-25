@@ -58,6 +58,7 @@ public class Arena {
         if (canHeroMove(position)) {
             hero.setPosition(position);
         }
+
         retrieveCoins();
     }
 
@@ -94,9 +95,14 @@ public class Arena {
     }
 
 
+
     private void retrieveCoins(){
+
         for(Coin coin : coins){
-            if(hero.getPosition().equals(coin.getPosition())) {
+
+            //System.out.println("Corodenadas hero: " + hero.getPosition().getX() + " Y " + hero.getPosition().getY() + "Coordenadas coin: " + coin.getPosition().getX() + " Y" + coin.getPosition().getY());
+            if(hero.getPosition().getX() == coin.getPosition().getX() && hero.getPosition().getY() == coin.getPosition().getY() ) {
+            //if(hero.getPosition().equals(coin.getPosition().getX())){
                 coins.remove(coin);
                 break;
             }
